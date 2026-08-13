@@ -1,0 +1,11 @@
+# Keil per-user workspace and debugger state
+*.uvguix.*
+JLinkSettings.ini
+
+# FreeModbus standalone project build artifacts
+Free-Modbus_Slave/project/Listings/
+Free-Modbus_Slave/project/Objects/*
+!Free-Modbus_Slave/project/Objects/*.hex
+Free-Modbus_Slave/project/RTE/
+Free-Modbus_Slave/project/modbus_build.log
+
