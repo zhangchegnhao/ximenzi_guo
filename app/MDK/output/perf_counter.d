@@ -1,0 +1,9 @@
+.\output\perf_counter.o: ..\PACK\perf_counter-2.3.3\perf_counter.c
+.\output\perf_counter.o: D:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\perf_counter.o: D:\keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\output\perf_counter.o: D:\keil\ARM\ARMCC\Bin\..\include\string.h
+.\output\perf_counter.o: ..\CMSIS\CMSIS_5\CMSIS\Core\Include\cmsis_compiler.h
+.\output\perf_counter.o: ..\CMSIS\CMSIS_5\CMSIS\Core\Include\cmsis_armcc.h
+.\output\perf_counter.o: ..\PACK\perf_counter-2.3.3\perf_counter.h
+.\output\perf_counter.o: D:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\perf_counter.o: ..\PACK\perf_counter-2.3.3\perfc_port_default.h

@@ -1,0 +1,11 @@
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\keil\ARM\ARMCC\Bin'
+Build target 'McuSTUDIO_F470VET6'
+After Build - User command #1: ./keil5_disp_size_bar.exe
+ram:
+  RW_IRAM1 :0x20000000
+  192.00 KB :|¡ö¡ö¡ö¡ö________________|   24.83 % (   47.67 KB /   192.00 KB) [147792 B]
+flash:
+  ER_IROM1 :0x8011000
+  128.00 KB :|¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö____________|   43.94 % (   56.24 KB /   128.00 KB) [73484 B]
+".\output\Project.axf" - 0 Error(s), 0 Warning(s).
+Build Time Elapsed:  00:00:02

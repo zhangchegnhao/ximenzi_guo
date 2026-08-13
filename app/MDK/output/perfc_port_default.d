@@ -1,0 +1,9 @@
+.\output\perfc_port_default.o: ..\PACK\perf_counter-2.3.3\perfc_port_default.c
+.\output\perfc_port_default.o: D:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\perfc_port_default.o: D:\keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\output\perfc_port_default.o: D:\keil\ARM\ARMCC\Bin\..\include\string.h
+.\output\perfc_port_default.o: ..\CMSIS\CMSIS_5\CMSIS\Core\Include\cmsis_compiler.h
+.\output\perfc_port_default.o: ..\CMSIS\CMSIS_5\CMSIS\Core\Include\cmsis_armcc.h
+.\output\perfc_port_default.o: ..\PACK\perf_counter-2.3.3\perf_counter.h
+.\output\perfc_port_default.o: D:\keil\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\perfc_port_default.o: ..\PACK\perf_counter-2.3.3\perfc_port_default.h
