@@ -7,6 +7,7 @@
 */
 #include "mcu_cimc_gd32f470vet6.h"
 #include "led_ctrl.h"
+#include "app_comm_config.h"
 
 /* Number of scheduler tasks in scheduler_task[]. */
 uint8_t task_num;
@@ -24,7 +25,9 @@ static task_t scheduler_task[] =
     ,{adc_task,  100,  0}
     ,{oled_task, 10,   0}
     ,{btn_task,  5,    0}
+#if APP_COMM_MODE == APP_COMM_MODE_PRIVATE_ASCII
     ,{uart_task, 5,    0}
+#endif
     ,{rtc_task,  500,  0}
 
 };

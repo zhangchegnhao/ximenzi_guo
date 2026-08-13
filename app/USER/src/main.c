@@ -13,6 +13,10 @@
 #include "sys_ota.h"
 #include "bl_partition.h"
 #include "ota_uart.h"
+#include "app_comm_config.h"
+#if APP_COMM_MODE == APP_COMM_MODE_MODBUS_RTU
+#include "mb_slave.h"
+#endif
 
 int main(void)
 {
@@ -40,7 +44,9 @@ int main(void)
 
     /* OTA 接收状态与 32KB ringbuffer 必须在 USART1 IRQ 喂数据前初始化，
        否则首次 IDLE 中断的 ring_buffer_write 会越界访问。 */
+#if APP_COMM_MODE == APP_COMM_MODE_PRIVATE_ASCII
     ota_uart_reset_state();
+#endif
 
     my_printf(DEBUG_USART, "BOOT: start\r\n");
 
@@ -81,14 +87,26 @@ int main(void)
     sys_storage_init();
     sys_alarm_init();
     sys_ota_init();
+#if APP_COMM_MODE == APP_COMM_MODE_PRIVATE_ASCII
     /* M-01: 用持久化 baud_code 覆盖 BSP 默认 19200（bsp_usart_all_init 已先执行） */
     sys_baudrate_apply(sys_device_get_baudrate_code());
     /* M-01 加固：等待 RS485 总线 idle 沉淀 + 让 PC 端有时间切换串口波特率，
        防止 A-03 上电心跳赶在 PC 切完前发出，导致 PC 收到 '?' 杂波。 */
     delay_ms(100);
+#else
+    if (mb_slave_init() != MB_ENOERR) {
+        my_printf(DEBUG_USART, "BOOT: Modbus RTU init failed\r\n");
+        while (1) {
+        }
+    }
+    my_printf(DEBUG_USART, "BOOT: Modbus RTU ready on USART1/RS485\r\n");
+#endif
 
     scheduler_init();
     while(1) {
+#if APP_COMM_MODE == APP_COMM_MODE_MODBUS_RTU
+        mb_slave_poll();
+#endif
         scheduler_run();
     }
 }

@@ -58,6 +58,7 @@ void PendSV_Handler(void);
 void USART0_IRQHandler(void);
 void USART1_IRQHandler(void);
 void USART2_IRQHandler(void);
+void TIMER6_IRQHandler(void);
 void EXTI0_IRQHandler(void);
 /* this function handles SysTick exception */
 void SysTick_Handler(void);

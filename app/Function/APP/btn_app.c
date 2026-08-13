@@ -6,6 +6,7 @@
 * Note:
 */
 #include "mcu_cimc_gd32f470vet6.h"
+#include "app_comm_config.h"
 
 
 extern uint8_t ucLed[6];
@@ -81,7 +82,9 @@ void prv_btn_event(struct ebtn_btn *btn, ebtn_evt_t evt)
             break;
         case USER_BUTTON_1:
             LED2_TOGGLE;
+#if APP_COMM_MODE == APP_COMM_MODE_PRIVATE_ASCII
             bsp_enter_deepsleep();
+#endif
             break;
         case USER_BUTTON_2:
             LED3_TOGGLE;

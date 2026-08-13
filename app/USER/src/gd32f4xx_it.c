@@ -39,6 +39,10 @@ OF SUCH DAMAGE.
 #include "mcu_cimc_gd32f470vet6.h"
 #include "ota_uart.h"
 #include "string.h"
+#include "app_comm_config.h"
+#if APP_COMM_MODE == APP_COMM_MODE_MODBUS_RTU
+#include "mb_port_app.h"
+#endif
 
 extern uint8_t rxbuffer[USART_RXBUFFER_SIZE];
 extern uint8_t rs_rxbuffer[AUX_USART_RXBUFFER_SIZE];
@@ -190,6 +194,9 @@ void USART0_IRQHandler(void)
 
 void USART1_IRQHandler(void)
 {
+#if APP_COMM_MODE == APP_COMM_MODE_MODBUS_RTU
+    mb_port_serial_irq_handler();
+#else
     if(RESET != usart_interrupt_flag_get(RS232_RS485_USART, USART_INT_FLAG_IDLE)){
         usart_data_receive(RS232_RS485_USART);
         dma_channel_disable(DMA_RS_USART, DMA_RS_USART_CHANNEL_RX);
@@ -209,6 +216,16 @@ void USART1_IRQHandler(void)
         dma_transfer_number_config(DMA_RS_USART, DMA_RS_USART_CHANNEL_RX, sizeof(rs_rxbuffer));
         dma_channel_enable(DMA_RS_USART, DMA_RS_USART_CHANNEL_RX);
     }
+#endif
+}
+
+void TIMER6_IRQHandler(void)
+{
+#if APP_COMM_MODE == APP_COMM_MODE_MODBUS_RTU
+    mb_port_timer_irq_handler();
+#else
+    timer_interrupt_flag_clear(TIMER6, TIMER_INT_FLAG_UP);
+#endif
 }
 
 void USART2_IRQHandler(void)

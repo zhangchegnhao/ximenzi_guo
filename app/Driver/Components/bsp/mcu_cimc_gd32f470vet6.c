@@ -355,6 +355,7 @@ void bsp_ttl_usart_init(void)
 
 void bsp_rs_usart_init(void)
 {
+#if APP_COMM_MODE == APP_COMM_MODE_PRIVATE_ASCII
     dma_single_data_parameter_struct dma_init_struct;
 
     rcu_periph_clock_enable(RCU_DMA0);
@@ -399,6 +400,35 @@ void bsp_rs_usart_init(void)
     gpio_mode_set(RS485_CS_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLUP, RS485_CS_PIN);
     gpio_output_options_set(RS485_CS_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, RS485_CS_PIN);
     RS485_CS_SET(0);
+#else
+    rcu_periph_clock_enable(USART_RS_PORT_RCU);
+    rcu_periph_clock_enable(USART_RS_RCU);
+    rcu_periph_clock_enable(RS485_CS_PORT_RCU);
+
+    gpio_af_set(USART_RS_PORT, GPIO_AF_7, USART_RS_TX | USART_RS_RX);
+    gpio_mode_set(USART_RS_PORT, GPIO_MODE_AF, GPIO_PUPD_PULLUP,
+                  USART_RS_TX | USART_RS_RX);
+    gpio_output_options_set(USART_RS_PORT, GPIO_OTYPE_PP,
+                            GPIO_OSPEED_50MHZ, USART_RS_TX | USART_RS_RX);
+
+    gpio_mode_set(RS485_CS_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLUP,
+                  RS485_CS_PIN);
+    gpio_output_options_set(RS485_CS_PORT, GPIO_OTYPE_PP,
+                            GPIO_OSPEED_50MHZ, RS485_CS_PIN);
+    RS485_CS_SET(0);
+
+    usart_deinit(RS232_RS485_USART);
+    usart_baudrate_set(RS232_RS485_USART, 115200U);
+    usart_word_length_set(RS232_RS485_USART, USART_WL_8BIT);
+    usart_parity_config(RS232_RS485_USART, USART_PM_NONE);
+    usart_stop_bit_set(RS232_RS485_USART, USART_STB_1BIT);
+    usart_receive_config(RS232_RS485_USART, USART_RECEIVE_ENABLE);
+    usart_transmit_config(RS232_RS485_USART, USART_TRANSMIT_ENABLE);
+    usart_dma_receive_config(RS232_RS485_USART, USART_RECEIVE_DMA_DISABLE);
+    usart_enable(RS232_RS485_USART);
+
+    nvic_irq_enable(USART1_IRQn, 1U, 0U);
+#endif
 }
 
 void bsp_usart_all_init(void)

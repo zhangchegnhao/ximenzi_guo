@@ -9,3 +9,10 @@ Free-Modbus_Slave/project/Objects/*
 Free-Modbus_Slave/project/RTE/
 Free-Modbus_Slave/project/modbus_build.log
 
+# Main APP Keil build artifacts (keep the tested firmware image)
+app/MDK/output_modbus/*
+!app/MDK/output_modbus/Project.hex
+app/MDK/list_modbus/
+app/MDK/*_build.log
+app/MDK/full_rebuild.log
+app/MDK/rebuild_modbus.log

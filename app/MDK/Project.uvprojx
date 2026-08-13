@@ -10,7 +10,7 @@
       <TargetName>McuSTUDIO_F470VET6</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -48,13 +48,13 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\output\</OutputDirectory>
+          <OutputDirectory>.\output_modbus\</OutputDirectory>
           <OutputName>Project</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\list\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -138,7 +138,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,GD32F470,__PERF_COUNTER_CFG_USE_SYSTICK_WRAPPER__</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Driver\Libraries\Include;..\USER\inc;..\Driver\Components\bsp;..\Driver\Components\gd30ad3344;..\Driver\Components\oled;..\Driver\Components\gd25qxx;..\Driver\Components\ebtn;..\Driver\Components\sdio;..\Driver\Components\fatfs;..\Function\APP;..\Function\sysFunction;..\Protocol;..\Protocol\ringbuffer;..\Protocol\ota_uart;..\common;..\PACK\perf_counter-2.3.3;..\CMSIS\CMSIS_5\CMSIS\Core\Include;..\Driver\Device\GD32F4xx\Include</IncludePath>
+              <IncludePath>..\Driver\Libraries\Include;..\USER\inc;..\Driver\Components\bsp;..\Driver\Components\gd30ad3344;..\Driver\Components\oled;..\Driver\Components\gd25qxx;..\Driver\Components\ebtn;..\Driver\Components\sdio;..\Driver\Components\fatfs;..\Function\APP;..\Function\sysFunction;..\Protocol;..\Protocol\ringbuffer;..\Protocol\ota_uart;..\Protocol\freemodbus\include;..\Protocol\freemodbus\rtu;..\Protocol\freemodbus\port;..\Protocol\modbus_app;..\common;..\PACK\perf_counter-2.3.3;..\CMSIS\CMSIS_5\CMSIS\Core\Include;..\Driver\Device\GD32F4xx\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -658,6 +658,66 @@
               <FileName>ota_uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Protocol\ota_uart\ota_uart.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Protocol/FreeModbus</GroupName>
+          <Files>
+            <File>
+              <FileName>mb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Protocol\freemodbus\mb.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbrtu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Protocol\freemodbus\rtu\mbrtu.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbcrc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Protocol\freemodbus\rtu\mbcrc.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfuncinput.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Protocol\freemodbus\functions\mbfuncinput.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Protocol\freemodbus\functions\mbutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>portevent.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Protocol\freemodbus\port\portevent.c</FilePath>
+            </File>
+            <File>
+              <FileName>portserial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Protocol\freemodbus\port\portserial.c</FilePath>
+            </File>
+            <File>
+              <FileName>porttimer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Protocol\freemodbus\port\porttimer.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Protocol/ModbusApp</GroupName>
+          <Files>
+            <File>
+              <FileName>mb_slave.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Protocol\modbus_app\mb_slave.c</FilePath>
+            </File>
+            <File>
+              <FileName>mb_registers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Protocol\modbus_app\mb_registers.c</FilePath>
             </File>
           </Files>
         </Group>

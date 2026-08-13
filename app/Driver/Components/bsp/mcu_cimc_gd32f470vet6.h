@@ -12,6 +12,7 @@
 #include "gd32f4xx_sdio.h"
 #include "gd32f4xx_dma.h"
 #include "systick.h"
+#include "app_comm_config.h"
 
 #include "ebtn.h"
 #include "oled.h"
